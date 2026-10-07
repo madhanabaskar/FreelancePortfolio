@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | NEXORA</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container nav-inner">
+        <a href="/" class="logo">NEXORA</a>
+        <div class="nav-links">
+          <a href="/about.html">About</a>
+          <a href="/services.html">Services</a>
+          <a href="/projects.html">Projects</a>
+
+          <a href="/contact.html" class="btn btn-dark">Let's Talk &rarr;</a>
+        </div>
+        <button class="hamburger" aria-label="Menu">&#9776;</button>
+      </div>
+    </nav>
+
+    <!-- Hero / Contact Form Section -->
+    <section class="hero hero-full section">
+      <div class="container split-grid" style="align-items: flex-start; gap: 0;">
+        <div class="reveal">
+          <span class="small-label">CONTACT US</span>
+          <h1 style="font-size: clamp(32px, 4vw, 56px);">Let's talk about your next project.</h1>
+          <p style="margin: 24px 0 48px;">Whether you need a new website, a complete redesign or a mobile application, tell us what you have in mind.</p>
+          
+          <div style="margin-bottom: 32px;">
+            <h4 style="font-size: 16px; margin-bottom: 8px;">Email</h4>
+            <p>hello@placeholder.com</p>
+          </div>
+          <div style="margin-bottom: 32px;">
+            <h4 style="font-size: 16px; margin-bottom: 8px;">WhatsApp</h4>
+            <p>+1 (555) 000-0000</p>
+          </div>
+          <div>
+            <h4 style="font-size: 16px; margin-bottom: 8px;">Location</h4>
+            <p>New York, NY (Remote Worldwide)</p>
+          </div>
+        </div>
+        
+        <div class="reveal" style="background: var(--pure-white); padding: 40px; border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" class="form-control" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" placeholder="john@company.com">
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name</label>
+              <input type="text" id="company" class="form-control" placeholder="Acme Inc">
+            </div>
+            <div class="form-group">
+              <label for="service">What do you need?</label>
+              <select id="service" class="form-control">
+                <option value="website">Website Development</option>
+                <option value="redesign">Website Redesign</option>
+                <option value="app">App Development</option>
+                <option value="uiux">UI / UX Design</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell us about your project</label>
+              <textarea id="message" class="form-control" placeholder="Project details..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Enquiry &rarr;</button>
+          </form>
+          <div id="formStateContainer" style="display: none; height: 100%; min-height: 400px; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+            <div id="loadingState" style="display: none;">
+              <div class="spinner"></div>
+              <h3 style="margin-top: 24px;">Sending Message...</h3>
+            </div>
+            <div id="successState" style="display: none;">
+              <div style="font-size: 48px; color: var(--primary-accent); margin-bottom: 16px;">&#10003;</div>
+              <h3>Message Sent!</h3>
+              <p>Thanks for reaching out. We will get back to you within 24 hours.</p>
+              <button class="btn btn-outline" style="margin-top: 24px;" id="resetFormBtn">Send Another</button>
+            </div>
+            <div id="errorState" style="display: none;">
+              <div style="font-size: 48px; color: #ff3b30; margin-bottom: 16px;">&#10007;</div>
+              <h3>Something went wrong.</h3>
+              <p>We couldn't send your message. Please try again later.</p>
+              <button class="btn btn-primary" style="margin-top: 24px;" id="retryFormBtn">Try Again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+          <div>&copy; 2026 NEXORA. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

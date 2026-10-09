@@ -22,6 +22,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -31,18 +34,33 @@ body {
   line-height: 1.6;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+img, svg, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--primary-text);
   line-height: 1.1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 h1 { font-size: clamp(36px, 4vw, 64px); font-weight: 800; letter-spacing: -0.02em; }
 h2 { font-size: clamp(32px, 4vw, 60px); font-weight: 700; letter-spacing: -0.01em; }
 h3 { font-size: clamp(22px, 3vw, 32px); font-weight: 600; }
-p { font-weight: 400; color: var(--secondary-text); }
+p { font-weight: 400; color: var(--secondary-text); word-break: break-word; overflow-wrap: anywhere; }
 .small-label { 
   font-size: 13px; 
   font-weight: 600; 
@@ -77,19 +95,19 @@ ul {
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 24px; }
+  .container { padding: 0 20px; }
 }
 
-.section { padding: 120px 0; }
-.section-sm { padding: 80px 0; }
+.section { padding: 120px 0; overflow-x: hidden; width: 100%; }
+.section-sm { padding: 80px 0; overflow-x: hidden; width: 100%; }
 .bg-secondary { background-color: var(--secondary-bg); }
 .bg-dark { background-color: var(--primary-text); color: var(--pure-white); }
 .bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark .small-label { color: var(--pure-white); }
 .bg-dark p { color: #A0A0A0; }
 
 @media (max-width: 768px) {
-  .section { padding: 72px 0; }
-  .section-sm { padding: 48px 0; }
+  .section { padding: 64px 0; }
+  .section-sm { padding: 44px 0; }
 }
 
 /* Navbar */
@@ -97,6 +115,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   background-color: rgba(248, 247, 243, 0.95);
   backdrop-filter: blur(10px);
@@ -109,9 +128,11 @@ ul {
   border-bottom: 1px solid var(--border-color);
 }
 .nav-inner {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .logo {
   font-size: 24px;
@@ -142,6 +163,7 @@ ul {
   cursor: pointer;
   transition: all var(--transition);
   border: 1px solid transparent;
+  max-width: 100%;
 }
 .btn-dark {
   background-color: var(--primary-text);
@@ -175,17 +197,28 @@ ul {
   cursor: pointer;
 }
 
+.page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
 @media (max-width: 1024px) {
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 68px;
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100vw;
     background: var(--primary-bg);
     flex-direction: column;
     padding: 24px;
     border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
   }
   .nav-links.active {
     display: flex;
@@ -487,12 +520,18 @@ ul {
 /* Footer */
 footer {
   padding: 80px 0 40px;
+  overflow: hidden;
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 64px;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
   margin-bottom: 80px;
+}
+.footer-col {
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .footer-col h4 {
   font-size: 16px;
@@ -507,6 +546,7 @@ footer {
 .footer-col ul a {
   color: var(--pure-white);
   font-size: 15px;
+  word-break: break-word;
 }
 .footer-col ul a:hover {
   color: var(--primary-accent);
@@ -524,8 +564,11 @@ footer {
   font-size: 14px;
   color: #A0A0A0;
 }
-@media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 16px; }
 }
 
@@ -552,6 +595,7 @@ footer {
 }
 .form-control {
   width: 100%;
+  max-width: 100%;
   padding: 16px;
   background: var(--pure-white);
   border: 1px solid var(--border-color);
@@ -569,6 +613,22 @@ textarea.form-control {
   min-height: 120px;
 }
 
+.contact-form-card {
+  background: var(--pure-white);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .contact-form-card {
+    padding: 24px 16px;
+  }
+}
+
 /* Spinner */
 .spinner {
   width: 48px;
@@ -582,3 +642,203 @@ textarea.form-control {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Contact Banner & Pill Cards (Matching Poster Design) */
+.contact-hero-details {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.contact-item-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--pure-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--primary-text);
+  transition: all var(--transition);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contact-item-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-accent);
+  box-shadow: 0 8px 20px rgba(36, 87, 214, 0.12);
+}
+
+.contact-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0070f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.contact-item-card:hover .contact-icon-circle {
+  transform: scale(1.08);
+}
+
+.contact-item-info {
+  min-width: 0;
+  flex: 1;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.contact-item-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-text);
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.contact-item-info p {
+  font-size: 13px;
+  color: var(--secondary-text);
+  margin: 0;
+}
+
+/* Dark Pill Contact Section (Flyer Recreation) */
+.contact-banner-dark {
+  background: #070a13;
+  border: 1px solid rgba(0, 115, 255, 0.25);
+  border-radius: 24px;
+  padding: 40px 32px;
+  color: #ffffff;
+  margin-top: 60px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+
+.contact-banner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.contact-banner-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all var(--transition);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contact-banner-item:hover {
+  background: rgba(0, 115, 255, 0.15);
+  border-color: #0070f3;
+  transform: translateY(-3px);
+}
+
+.contact-banner-item .contact-item-info h4 {
+  color: #ffffff;
+}
+
+.contact-banner-item .contact-item-info p {
+  color: #94a3b8;
+}
+
+/* Value Props Grid (From poster) */
+.value-props-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.value-prop-card {
+  text-align: center;
+  padding: 24px 16px;
+  background: var(--pure-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: transform var(--transition);
+  min-width: 0;
+}
+
+.value-prop-card:hover {
+  transform: translateY(-4px);
+}
+
+.value-prop-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 16px;
+  color: var(--primary-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-prop-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.value-prop-card p {
+  font-size: 13px;
+  color: var(--secondary-text);
+}
+
+@media (max-width: 1024px) {
+  .contact-banner-grid {
+    grid-template-columns: 1fr;
+  }
+  .value-props-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 16px;
+  }
+  .contact-banner-dark {
+    padding: 24px 16px;
+    border-radius: 16px;
+    margin-top: 40px;
+  }
+  .contact-item-card {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  .contact-icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+  .contact-banner-item {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  .value-props-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+}
+

@@ -842,3 +842,64 @@ textarea.form-control {
   }
 }
 
+/* Mild Thick Grid Outlines & Hover Accent */
+:root {
+  --border-color: #C2C2BA;
+}
+
+.project-card,
+.service-card::before,
+.why-block,
+.value-prop-card,
+.contact-item-card,
+.contact-form-card,
+.split-image,
+.hero-image {
+  border: 1.5px solid var(--border-color);
+  transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+}
+
+.project-card:hover,
+.service-card:hover::before,
+.why-block:hover,
+.value-prop-card:hover,
+.contact-item-card:hover,
+.contact-form-card:hover {
+  border-color: var(--primary-accent);
+  box-shadow: 0 12px 28px rgba(36, 87, 214, 0.12);
+}
+
+/* Navbar Link Active State */
+.nav-links a.active {
+  color: var(--primary-accent);
+  position: relative;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-accent);
+  border-radius: 2px;
+}
+
+/* Page Transition Smooth Animations */
+.page-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.page-wrapper.page-leaving {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+.page-wrapper.page-entering {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+
